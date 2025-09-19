@@ -1,6 +1,5 @@
 # Library Management System
-
-A comprehensive REST API built with Spring Boot for managing a library's operations, including books, members, users, publishers, categories, authors, and borrowing transactions.
+A comprehensive REST API built with Spring Boot for managing library operations, including books, members, users, and borrowing transactions with role-based access control.
 
 ## 🚀 Features
 
@@ -52,7 +51,7 @@ src/main/java/com/library/management/
 ### Authentication Flow
 1. User logs in with username/password
 2. System validates credentials and returns JWT token
-3. Token must be included in Authorization header for protected endpoints
+3. Token must be included in the Authorization header for protected endpoints
 4. Role-based access control enforces permissions
 
 ## 📊 Database Schema
@@ -73,6 +72,10 @@ src/main/java/com/library/management/
 - Books → Publisher (Many-to-One)
 - Categories → Parent Category (Self-referencing)
 - BorrowRecords → Book, Member, User (Many-to-One)
+
+### ERD Diagram
+Database schema includes proper indexing, foreign key constraints, and optimized relationships.
+<img width="860" height="818" alt="Screenshot 2025-09-19 200748" src="https://github.com/user-attachments/assets/feed96ba-aea6-4738-b5db-8c97b53a9661" />
 
 ## 🔧 API Endpoints
 
@@ -167,17 +170,19 @@ GET    /api/authors/search    # Search authors
 2. Configure database connection in `application.properties`
 3. Run: `mvn spring-boot: run`
 4. Application starts on port 8081
+5. 
+## Default Test Accounts
 
-### Default Admin User
-Create an admin user through direct database insertion or API:
-```json
-{
-  "username": "admin",
-  "password": "admin123",
-  "email": "admin@library.com",
-  "role": "ADMIN"
-}
-```
+**⚠️ These are test credentials only - change in production!**
+
+| Username | Password | Role | Email |
+|----------|----------|------|-------|
+| `admin` | `admin123` | ADMIN | admin@library.com |
+| `librarian1` | `admin123` | LIBRARIAN | librarian1@library.com |
+| `staff1` | `admin123` | STAFF | staff1@library.com |
+
+**Sample Members** (for borrowing tests):
+- john.doe@email.com, jane.smith@email.com, etc.
 
 ## 📋 Business Rules
 
