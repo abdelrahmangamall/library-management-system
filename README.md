@@ -165,7 +165,7 @@ GET    /api/authors/search    # Search authors
 ### Running the Application
 1. Clone the repository
 2. Configure database connection in `application.properties`
-3. Run: `mvn spring-boot:run`
+3. Run: `mvn spring-boot: run`
 4. Application starts on port 8081
 
 ### Default Admin User
@@ -251,7 +251,6 @@ The API can be tested using:
 
 ---
 
-**Author**: [Your Name]  
-**Contact**: [Your Email]  
-**Version**: 1.0.0  
-**License**: MIT
+**Author**: Abdulrahman  
+**Contact**: abdulrahmangamaall@gmail.com
+
