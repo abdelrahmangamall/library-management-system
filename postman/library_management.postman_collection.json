@@ -1,0 +1,1936 @@
+{
+	"info": {
+		"_postman_id": "632bbee3-864e-4fec-8af1-8fd4a96899cf",
+		"name": "Library Management System API",
+		"description": "Postman Collection for Library Management System built with Spring Boot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27056695"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{refresh_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"newuser\",\n  \"password\": \"123456\",\n  \"email\": \"newuser@library.com\",\n  \"role\": \"STAFF\",\n  \"isActive\": true\n}\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gat User By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MDgxMCwiZXhwIjoxNzU4Mzc3MjEwfQ.FlhHUFyIvKqOsQYZdx-pDlahHmDs5FLLUorPdEVRmqGKv6KnmC5Tm30Zm00AEIz7xCC1CNqRm5z5rpSOCvVnfg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Role",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MDgxMCwiZXhwIjoxNzU4Mzc3MjEwfQ.FlhHUFyIvKqOsQYZdx-pDlahHmDs5FLLUorPdEVRmqGKv6KnmC5Tm30Zm00AEIz7xCC1CNqRm5z5rpSOCvVnfg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/role/ADMIN",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"role",
+								"ADMIN"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MDgxMCwiZXhwIjoxNzU4Mzc3MjEwfQ.FlhHUFyIvKqOsQYZdx-pDlahHmDs5FLLUorPdEVRmqGKv6KnmC5Tm30Zm00AEIz7xCC1CNqRm5z5rpSOCvVnfg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"ahmed\",\r\n  \"password\": null,\r\n  \"email\": \"newuser@library.com\",\r\n  \"role\": \"STAFF\",\r\n  \"isActive\": true\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users/3/deactivate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"3",
+								"deactivate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get All Books",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/books",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"New Book Title\",\n  \"isbn\": \"9789999999999\",\n  \"publicationYear\": 2025,\n  \"edition\": \"1st Edition\",\n  \"summary\": \"A brand new test book\",\n  \"language\": \"English\",\n  \"pageCount\": 250,\n  \"publisherId\": 1,\n  \"authorIds\": [1],\n  \"categoryIds\": [5]\n}\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books/11",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Children of Gebelawi\",\n  \"isbn\": \"9789770924132\",\n  \"publicationYear\": 1959,\n  \"edition\": \"1st\",\n  \"summary\": \"One of Mahfouz's most famous novels\",\n  \"language\": \"Arabic\",\n  \"pageCount\": 355,\n  \"isAvailable\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Book Cover",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1f09563a-5fd5-47b0-a0f0-389dc73aa0e7"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books/4/upload-cover",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"4",
+								"upload-cover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Books",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"New Book Title\",\n  \"isbn\": \"9789999999999\",\n  \"publicationYear\": 2025,\n  \"edition\": \"1st Edition\",\n  \"summary\": \"A brand new test book\",\n  \"language\": \"English\",\n  \"pageCount\": 250,\n  \"publisherId\": 1,\n  \"authorIds\": [1],\n  \"categoryIds\": [5]\n}\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books/search?query=Harry&page=0&size=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Harry"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Books",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books/available?page=0&size=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"available"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Books by Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books/category/1?page=0&size=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"category",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Books by Author",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books/author/4?page=0&size=5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"author",
+								"4"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book Statistics",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/books/statistics",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"books",
+								"statistics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "Get All Members",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count Active Members",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/members/count/active",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"members",
+								"count",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/members/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"members",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Mohamed\",\r\n  \"email\": \"ali.mo@email.com\",\r\n  \"phone\": \"+20-111-555-4444\",\r\n  \"address\": \"Giza, Egypt\",\r\n  \"isActive\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/members/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"members",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Ali\",\r\n  \"lastName\": \"Mohamed\",\r\n  \"email\": \"ali.mo@email.com\",\r\n  \"phone\": \"+20-111-555-4444\",\r\n  \"address\": \"Giza, Egypt\",\r\n  \"isActive\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/members/2/deactivate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"members",
+								"2",
+								"deactivate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Ali\",\n  \"lastName\": \"Hassan\",\n  \"email\": \"ali.hassan@email.com\",\n  \"phone\": \"+20-111-222-3333\",\n  \"address\": \"Cairo, Egypt\",\n  \"isActive\": true\n}\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/members",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"members"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Get All Authors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/authors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Paulo\",\n  \"lastName\": \"Coelho\",\n  \"biography\": \"Brazilian lyricist and novelist, best known for 'The Alchemist'.\",\n  \"birthDate\": \"1947-08-24\"\n}\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/authors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"authors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/authors/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"authors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Agatha Updated\",\n  \"lastName\": \"Christie\",\n  \"biography\": \"Updated biography\",\n  \"birthDate\": \"1890-09-15\",\n  \"deathDate\": \"1976-01-12\"\n}\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/authors/10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"authors",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/authors/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"authors",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Authors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Naguib Mahfouz\",\n  \"biography\": \"Egyptian Nobel Prize-winning author\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/authors/search?query=King",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"authors",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "King"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Psychology\",\n  \"description\": \"Books about psychology\",\n  \"level\": 1,\n  \"displayOrder\": 1,\n  \"isActive\": true,\n  \"parentId\": 2\n}\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category Tree",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/tree",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"tree"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Fiction Updated\",\n  \"description\": \"Updated description\",\n  \"level\": 0,\n  \"displayOrder\": 1,\n  \"isActive\": true,\n  \"parentId\": null\n}\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/17",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/18",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category Children",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/categories/1/children",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1",
+								"children"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Borrow",
+			"item": [
+				{
+					"name": "Get All Borrows",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/borrow",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"borrow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update overdue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MjIxOSwiZXhwIjoxNzU4Mzc4NjE5fQ.h1Nf9kWDxjE1ns7ABBkIHO_gWumfK2ndiO0oT1lTYGWTY10wwgOluv3w8PhDXLLVOZGF6d2GEk0aCgar03xOHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bookId\": 1,\n  \"memberId\": 1,\n  \"userId\": 2,\n  \"days\": 14\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/borrow/update-overdue",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"borrow",
+								"update-overdue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MjIxOSwiZXhwIjoxNzU4Mzc4NjE5fQ.h1Nf9kWDxjE1ns7ABBkIHO_gWumfK2ndiO0oT1lTYGWTY10wwgOluv3w8PhDXLLVOZGF6d2GEk0aCgar03xOHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/borrow/1/return",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"borrow",
+								"1",
+								"return"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Borrow by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/borrow/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"borrow",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Borrow by MemberID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MTA1MywiZXhwIjoxNzU4Mzc3NDUzfQ.nY8_4IjKuCGL4gupa93DYQiNBa1GFXI4rVWzwba6IbO_5rzSrf_EU_66D3D3RHjoEQdc53zjZQp1qUcmz90YQg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/borrow/member/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"borrow",
+								"member",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Borrow Overdue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MjIxOSwiZXhwIjoxNzU4Mzc4NjE5fQ.h1Nf9kWDxjE1ns7ABBkIHO_gWumfK2ndiO0oT1lTYGWTY10wwgOluv3w8PhDXLLVOZGF6d2GEk0aCgar03xOHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/borrow/overdue",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"borrow",
+								"overdue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrow Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MjIxOSwiZXhwIjoxNzU4Mzc4NjE5fQ.h1Nf9kWDxjE1ns7ABBkIHO_gWumfK2ndiO0oT1lTYGWTY10wwgOluv3w8PhDXLLVOZGF6d2GEk0aCgar03xOHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookId\": 4,\r\n  \"memberId\": 2,\r\n  \"userId\": 1,\r\n  \"days\": 10\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/borrow/book",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"borrow",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Publisher",
+			"item": [
+				{
+					"name": "Get all publishers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI4ODMwOSwiZXhwIjoxNzU4Mzc0NzA5fQ.RiRipdxF_ke_hrUNw1yDhl2zeounX8GS5ySTEbQjktTwGVg3eRGrvmkCkf3v8nYaBQgMw3ERxBmABkaZDzaTvw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/publishers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"publishers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create publisher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MjIxOSwiZXhwIjoxNzU4Mzc4NjE5fQ.h1Nf9kWDxjE1ns7ABBkIHO_gWumfK2ndiO0oT1lTYGWTY10wwgOluv3w8PhDXLLVOZGF6d2GEk0aCgar03xOHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"ahmed shwky\",\r\n  \"address\": \"Cairo, Egypt\",\r\n  \"website\": \"https://newpublisher.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/publishers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"publishers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MjIxOSwiZXhwIjoxNzU4Mzc4NjE5fQ.h1Nf9kWDxjE1ns7ABBkIHO_gWumfK2ndiO0oT1lTYGWTY10wwgOluv3w8PhDXLLVOZGF6d2GEk0aCgar03xOHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/publishers/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"publishers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Publishers by Name",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MjIxOSwiZXhwIjoxNzU4Mzc4NjE5fQ.h1Nf9kWDxjE1ns7ABBkIHO_gWumfK2ndiO0oT1lTYGWTY10wwgOluv3w8PhDXLLVOZGF6d2GEk0aCgar03xOHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/publishers/search?name=Harper",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"publishers",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Harper"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Publisher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MzQzMSwiZXhwIjoxNzU4Mzc5ODMxfQ.owTxXshv1BpDiINy3UIUlL6IZB9aR8dTyKfvgL9tvChYQmx6dxAvSAc7zrTF47E3Y33CTPODar28Z2At5WU7cQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Updated Publisher\",\r\n  \"address\": \"Cairo, Egypt\",\r\n  \"website\": \"https://updatedpublisher.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/publishers/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"publishers",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Publisher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc1ODI5MjIxOSwiZXhwIjoxNzU4Mzc4NjE5fQ.h1Nf9kWDxjE1ns7ABBkIHO_gWumfK2ndiO0oT1lTYGWTY10wwgOluv3w8PhDXLLVOZGF6d2GEk0aCgar03xOHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/publishers/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"publishers",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "refresh_token",
+			"value": ""
+		}
+	]
+}
