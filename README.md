@@ -201,7 +201,7 @@ GET    /api/authors/search    # Search authors
 ## ⚙️ Configuration
 
 ### Database Setup
-1. Create MySQL database: `library_management`
+1. Create MySQL database: `library_db`
 2. Update `application.properties` with your database credentials
 3. Application will auto-create tables on startup
 
