@@ -1,6 +1,38 @@
 # Library Management System
 A comprehensive REST API built with Spring Boot for managing library operations, including books, members, users, and borrowing transactions with role-based access control.
 
+![Java](https://img.shields.io/badge/Java-21-blue)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)
+![MySQL](https://img.shields.io/badge/Database-MySQL-orange)
+[![Postman](https://img.shields.io/badge/Postman-Collection-orange)](./postman/library_management.postman_collection.json)
+[![ERD](https://img.shields.io/badge/ERD-Diagram-blueviolet)](./docs/library_management_erd.png)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+## 📑 Table of Contents
+
+- [🚀 Features](#-features)
+  - [Core Functionality](#core-functionality)
+  - [Advanced Features](#advanced-features)
+- [🏗️ Architecture](#-architecture)
+  - [Technology Stack](#technology-stack)
+  - [Project Structure](#project-structure)
+- [🔐 Security & Roles](#-security--roles)
+- [📊 Database Schema](#-database-schema)
+- [📂 SQL Scripts](#-sql-scripts)
+- [📊 ERD](#-erd)
+- [🧪 Postman Collection](#-postman-collection)
+- [🔧 API Endpoints](#-api-endpoints)
+- [⚙️ Configuration](#-configuration)
+- [🚀 Getting Started](#-getting-started)
+- [Default Test Accounts](#default-test-accounts)
+- [📋 Business Rules](#-business-rules)
+- [🔍 Key Design Decisions](#-key-design-decisions)
+- [🧪 Testing](#-testing)
+- [📈 Performance Considerations](#-performance-considerations)
+- [🔒 Security Features](#-security-features)
+- [📝 Future Enhancements](#-future-enhancements)
+
+
 ## 🚀 Features
 
 ### Core Functionality
@@ -30,6 +62,15 @@ A comprehensive REST API built with Spring Boot for managing library operations,
 
 ### Project Structure
 ```
+library-management-system/
+├── src/  
+├── sql/
+├── postman/
+├── docs/
+├── pom.xml
+└── README.md
+
+
 src/main/java/com/library/management/
 ├── config/           # Configuration classes (Security, CORS)
 ├── controller/       # REST Controllers
@@ -73,9 +114,25 @@ src/main/java/com/library/management/
 - Categories → Parent Category (Self-referencing)
 - BorrowRecords → Book, Member, User (Many-to-One)
 
-### ERD Diagram
-Database schema includes proper indexing, foreign key constraints, and optimized relationships.
-<img width="860" height="818" alt="Screenshot 2025-09-19 200748" src="https://github.com/user-attachments/assets/feed96ba-aea6-4738-b5db-8c97b53a9661" />
+
+## 📂 SQL Scripts
+The project includes SQL scripts for database setup and testing:
+- [`sql/sample_data.sql`](./sql/sample_data.sql): Sample data for testing (books, authors, members, users, etc.)
+
+## 📊 ERD
+The database design is available as a MySQL Workbench file and an exported image:
+- [`docs/library_management_erd.mwb`](./docs/library_management_erd.mwb)
+- [`docs/library_management_erd.png`](./docs/library_management_erd.png)
+
+
+## 🧪 Postman Collection
+For API testing, a Postman collection is included:
+- [`postman/library_management.postman_collection.json`](./postman/library_management.postman_collection.json)
+1. Open Postman
+2. Go to **File → Import**
+3. Select the JSON file from `postman/library_management.postman_collection.json`
+
+You can import it into Postman to test all endpoints with preconfigured requests.
 
 ## 🔧 API Endpoints
 
